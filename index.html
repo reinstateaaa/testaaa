@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@
             overflow: hidden;
         }
 
-        h1, p {
+        h1,
+        p {
             text-align: center;
         }
 
@@ -57,8 +59,13 @@
         }
 
         @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
         }
 
         /* Media queries for responsiveness */
@@ -76,6 +83,7 @@
     <!-- Include the Firebase setup script -->
     <script type="module" src="firebase-setup.js"></script>
 </head>
+
 <body>
     <div class="rotating-banner">
         <span>REINSTATE AAA @ USC! </span>
@@ -83,13 +91,13 @@
 
     <h1>How YOU can help:</h1>
     <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
-    <p class="action-section">Step 1: Join the <span id="clickCount">123</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
+    <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
     <button onclick="openMail()">Click me!</button>
 
     <!-- Display the counter -->
-    <p id="counter">Total Clicks: <span id="clickCount">123</span></p>
+    <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
 
     <!-- Add a script section to define the onclick function for the first action -->
     <script>
@@ -112,7 +120,8 @@
         counterRef.on('value', (snapshot) => {
             const clickCountElement = document.getElementById('clickCount');
             if (clickCountElement) {
-                clickCountElement.textContent = snapshot.val() || 0;
+                const count = snapshot.val();
+                clickCountElement.textContent = count !== null ? count : "IDK";
             }
         });
     </script>
@@ -134,4 +143,5 @@
         <p>Your removal of the Academic Achievement Award undermines the integrity of the University of Southern California. USC positions itself as an institution where possibilities are unlimited, a place where students can pursue aspirations no matter their financial limitations. Students attend USC with the expectation that these versatile academic opportunities will be available to them by the ability to pursue a variety of majors and minors simultaneously. By removing AAA, you are disenfranchising your most ambitious and deserving students. You are taking advantage of low-income students by restricting their education for unnecessary, exorbitant profit.</p>
     </div>
 </body>
+
 </html>
