@@ -80,8 +80,8 @@
         }
     </style>
 
-    <!-- Include the Firebase setup script -->
-    <script src="./firebase-setup.js"></script>
+   <!-- Include the Firebase setup script -->
+    <script type="module" src="./firebase-setup.js"></script>
 </head>
 
 <body>
@@ -94,7 +94,7 @@
     <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
-    <button onclick="openMail()">Demand Responsibility</button>
+     <button id="mailButton">Demand Responsibility</button>
 
     <!-- Display the counter -->
     <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
@@ -134,6 +134,38 @@
         function openChangeOrg() {
             window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
         }
+    </script>
+
+    <!-- Add a script section to define the onclick functions -->
+    <script>
+        function initializeFirebase() {
+            // Increment the counter in the database
+            const counterRef = database.ref('aaacounter/counter');
+            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+
+            // Listen for changes in the counter value and update the display
+            counterRef.on('value', (snapshot) => {
+                const clickCountElement = document.getElementById('clickCount');
+                if (clickCountElement) {
+                    const count = snapshot.val();
+                    clickCountElement.textContent = count !== null ? count : "IDK";
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const mailButton = document.getElementById('mailButton');
+            if (mailButton) {
+                mailButton.addEventListener('click', openMail);
+            }
+
+            const petitionButton = document.getElementById('petitionButton');
+            if (petitionButton) {
+                petitionButton.addEventListener('click', openChangeOrg);
+            }
+
+            initializeFirebase();
+        });
     </script>
 
     <!-- Add a banner at the bottom of the page -->
