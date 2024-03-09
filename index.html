@@ -13,10 +13,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100vh;
             background: url('black.jpg') center/cover no-repeat;
             background-color: black;
             color: white;
-            overflow: hidden;
         }
 
         h1,
@@ -94,47 +94,46 @@
     <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
-    <button id="mailButton">Click me!</button>
+    <button onclick="openMail()">Click me!</button>
 
     <!-- Display the counter -->
     <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
 
-    <!-- Add a button with onclick function for the second action -->
-    <button id="petitionButton">Sign the Petition</button>
-
-    <!-- Add a script section to define the onclick functions -->
+    <!-- Add a script section to define the onclick function for the first action -->
     <script>
-        function initializeFirebase() {
+        function openMail() {
+            var email = 'jcsimon@usc.edu';
+            var subject = 'test';
+            var body = 'yoyoyo';
+            var mailtoURL = 'mailto:' + email +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+            window.location.href = mailtoURL;
+
             // Increment the counter in the database
             const counterRef = database.ref('aaacounter/counter');
             counterRef.transaction((currentCount) => (currentCount || 0) + 1);
-
-            // Listen for changes in the counter value and update the display
-            counterRef.on('value', (snapshot) => {
-                const clickCountElement = document.getElementById('clickCount');
-                if (clickCountElement) {
-                    const count = snapshot.val();
-                    clickCountElement.textContent = count !== null ? count : "IDK";
-                }
-            });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const mailButton = document.getElementById('mailButton');
-            if (mailButton) {
-                mailButton.addEventListener('click', openMail);
+        // Listen for changes in the counter value and update the display
+        const counterRef = database.ref('aaacounter/counter');
+        counterRef.on('value', (snapshot) => {
+            const clickCountElement = document.getElementById('clickCount');
+            if (clickCountElement) {
+                clickCountElement.textContent = snapshot.val() || "IDK";
             }
-
-            const petitionButton = document.getElementById('petitionButton');
-            if (petitionButton) {
-                petitionButton.addEventListener('click', function () {
-                    // Replace 'https://www.change.org/your-petition-url' with your actual petition URL
-                    window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
-                });
-            }
-
-            initializeFirebase();
         });
+    </script>
+
+    <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
+    <!-- Add a button with onclick function for the second action -->
+    <button onclick="openChangeOrg()">Sign the Petition</button>
+
+    <!-- Add a script section to define the onclick function for the second action -->
+    <script>
+        function openChangeOrg() {
+            window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
+        }
     </script>
 
     <!-- Add a banner at the bottom of the page -->
