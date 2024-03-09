@@ -100,7 +100,9 @@
     <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
 
     <!-- Add a script section to define the onclick function for the first action -->
-    <script>
+    <script type="module">
+        import { initializeFirebase, openMail, openChangeOrg } from './firebase-setup.js';
+
         function openMail() {
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
@@ -154,6 +156,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            initializeFirebase();
             const mailButton = document.getElementById('mailButton');
             if (mailButton) {
                 mailButton.addEventListener('click', openMail);
@@ -163,8 +166,6 @@
             if (petitionButton) {
                 petitionButton.addEventListener('click', openChangeOrg);
             }
-
-            initializeFirebase();
         });
     </script>
 
