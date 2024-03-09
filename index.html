@@ -16,6 +16,7 @@
             background: url('mail.png') center/cover no-repeat;
             background-color: black;
             color: white;
+            overflow: hidden;
         }
 
         h1, p {
@@ -36,12 +37,35 @@
             font-size: 24px;
             margin-top: 10px;
         }
+
+        .rotating-banner {
+            font-size: 36px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .rotating-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
     </style>
 
     <!-- Include the Firebase setup script -->
     <script type="module" src="firebase-setup.js"></script>
 </head>
 <body>
+    <div class="rotating-banner">
+        <span>REINSTATE AAA @ USC! </span>
+    </div>
+
     <h1>How YOU can help:</h1>
     <p>I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure: </p>
     <p>Step 1: Join the 123 others who have demanded change by auto-emailing the board (2 clicks) </p>
