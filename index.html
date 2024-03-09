@@ -107,19 +107,19 @@
         import { openMail, openChangeOrg } from './firebase-setup.js';
 
         function initializeFirebase() {
-            // Increment the counter in the database
-            const counterRef = database.ref('clickCounter');
-            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+    // Increment the counter in the database
+    const counterRef = database.ref('aaacounter/counter'); // Update the path
+    counterRef.transaction((currentCount) => (currentCount || 0) + 1);
 
-            // Listen for changes in the counter value and update the display
-            counterRef.on('value', (snapshot) => {
-                const clickCountElement = document.getElementById('clickCount');
-                if (clickCountElement) {
-                    const count = snapshot.val();
-                    clickCountElement.textContent = count !== null ? count : "IDK";
-                }
-            });
+    // Listen for changes in the counter value and update the display
+    counterRef.on('value', (snapshot) => {
+        const clickCountElement = document.getElementById('clickCount');
+        if (clickCountElement) {
+            const count = snapshot.val();
+            clickCountElement.textContent = count !== null ? count : "IDK";
         }
+    });
+}
 
         document.addEventListener('DOMContentLoaded', function () {
             const mailButton = document.getElementById('mailButton');
