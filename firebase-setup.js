@@ -2,11 +2,8 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyAMh3rbnYEZkMpg-6iOVSdp6yQPH50dspg",
     authDomain: "aaacounter.firebaseapp.com",
@@ -20,4 +17,9 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+
+  // Initialize the counter in the database if it doesn't exist
+  const counterRef = database.ref('clickCounter');
+  counterRef.transaction((currentCount) => currentCount || 0);
 </script>
