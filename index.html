@@ -12,7 +12,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Adjusted to min-height for better mobile display */
+            height: 100vh;
             background: url('mail.png') center/cover no-repeat;
             background-color: black;
             color: white;
@@ -56,31 +56,9 @@
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
         }
-
-        /* Added a media query for better styling on smaller screens */
-        @media screen and (max-width: 600px) {
-            h1 {
-                font-size: 20px;
-            }
-            p {
-                font-size: 14px;
-            }
-            button {
-                font-size: 14px;
-            }
-            #counter {
-                font-size: 18px;
-            }
-            .rotating-banner {
-                font-size: 24px;
-            }
-            .rotating-banner span {
-                animation: marquee 8s linear infinite; /* Adjusted animation speed for smaller screens */
-            }
-        }
     </style>
 
-    <!-- Include the Firebase setup script -->
+    <!-- Include the updated Firebase setup script -->
     <script type="module" src="firebase-setup.js"></script>
 </head>
 <body>
@@ -140,5 +118,3 @@
         <h2>ABOUT US:</h2>
         <p>Your removal of the Academic Achievement Award undermines the integrity of the University of Southern California. USC positions itself as an institution where possibilities are unlimited, a place where students can pursue aspirations no matter their financial limitations. Students attend USC with the expectation that these versatile academic opportunities will be available to them by the ability to pursue a variety of majors and minors simultaneously. By removing AAA, you are disenfranchising your most ambitious and deserving students. You are taking advantage of low-income students by restricting their education for unnecessary, exorbitant profit.</p>
     </div>
-</body>
-</html>
