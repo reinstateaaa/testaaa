@@ -6,16 +6,29 @@
     <title>REINSTATE AAA @ USC!</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* Ensure full height of the viewport */
-            margin: 0; /* Remove default body margin */
+            height: 100vh;
+            background: url('file:///C:/Users/james/OneDrive/Desktop/aaatest/mail.png') center/cover no-repeat; /* Adjust the path to your image */
+            color: white;
         }
 
-        h1 {
+        h1, p {
             text-align: center;
+        }
+
+        button {
+            background-color: #3498db; /* Choose a background color for the button */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -30,17 +43,12 @@
     <!-- Add a script section to define the onclick function -->
     <script>
         function openMail() {
-            // Replace the email, subject, and body with your desired values
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
             var body = 'yoyoyo';
-
-            // Create the mailto URL
             var mailtoURL = 'mailto:' + email +
                 '?subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
-
-            // Open the default mail app with the preloaded email
             window.location.href = mailtoURL;
         }
     </script>
