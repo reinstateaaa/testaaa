@@ -101,26 +101,7 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
-    </script>
-</head>
 
-<body>
-    <div class="rotating-banner">
-        <span>REINSTATE AAA @ USC! </span>
-    </div>
-
-    <h1>How YOU can help:</h1>
-    <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
-    <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
-
-    <!-- Add a button with onclick function for the first action -->
-     <button id="mailButton">Demand Responsibility</button>
-
-    <!-- Display the counter -->
-    <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
-
-    <!-- Add a script section to define the onclick function for the first action -->
-    <script>
         function openMail() {
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
@@ -143,21 +124,7 @@
                 clickCountElement.textContent = snapshot.val() || "IDK";
             }
         });
-    </script>
 
-    <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
-    <!-- Add a button with onclick function for the second action -->
-    <button onclick="openChangeOrg()">Sign the Petition</button>
-
-    <!-- Add a script section to define the onclick function for the second action -->
-    <script>
-        function openChangeOrg() {
-            window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
-        }
-    </script>
-
-    <!-- Add a script section to define the onclick functions -->
-    <script>
         function initializeFirebase() {
             // Increment the counter in the database
             const counterRef = database.ref('aaacounter/counter');
@@ -186,6 +153,33 @@
 
             initializeFirebase();
         });
+    </script>
+</head>
+
+<body>
+    <div class="rotating-banner">
+        <span>REINSTATE AAA @ USC! </span>
+    </div>
+
+    <h1>How YOU can help:</h1>
+    <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
+    <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
+
+    <!-- Add a button with onclick function for the first action -->
+     <button id="mailButton">Demand Responsibility</button>
+
+    <!-- Display the counter -->
+    <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
+
+    <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
+    <!-- Add a button with onclick function for the second action -->
+    <button onclick="openChangeOrg()">Sign the Petition</button>
+
+    <!-- Add a script section to define the onclick function for the second action -->
+    <script>
+        function openChangeOrg() {
+            window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
+        }
     </script>
 
     <!-- Add a banner at the bottom of the page -->
