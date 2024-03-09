@@ -81,8 +81,6 @@
     </style>
 
     <!-- Include the Firebase setup script -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"></script>
     <script type="module" src="firebase-setup.js"></script>
 </head>
 
@@ -103,55 +101,41 @@
 
     <!-- Add a script section to define the onclick function for the first action -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize Firebase
-            const app = firebase.initializeApp(firebaseConfig);
-            const database = firebase.database();
+        function openMail() {
+            var email = 'jcsimon@usc.edu';
+            var subject = 'test';
+            var body = 'yoyoyo';
+            var mailtoURL = 'mailto:' + email +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+            window.location.href = mailtoURL;
 
             // Increment the counter in the database
-            function incrementCounter() {
-                const counterRef = database.ref('clickCounter');
-                counterRef.transaction((currentCount) => (currentCount || 0) + 1);
-            }
-
-            // Listen for changes in the counter value and update the display
             const counterRef = database.ref('clickCounter');
-            counterRef.on('value', (snapshot) => {
-                const clickCountElement = document.getElementById('clickCount');
-                if (clickCountElement) {
-                    const count = snapshot.val();
-                    clickCountElement.textContent = count !== null ? count : "IDK";
-                }
-            });
+            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+        }
 
-            // Function to open mail
-            function openMail() {
-                var email = 'jcsimon@usc.edu';
-                var subject = 'test';
-                var body = 'yoyoyo';
-                var mailtoURL = 'mailto:' + email +
-                    '?subject=' + encodeURIComponent(subject) +
-                    '&body=' + encodeURIComponent(body);
-                window.location.href = mailtoURL;
-
-                // Increment the counter
-                incrementCounter();
+        // Listen for changes in the counter value and update the display
+        const counterRef = database.ref('clickCounter');
+        counterRef.on('value', (snapshot) => {
+            const clickCountElement = document.getElementById('clickCount');
+            if (clickCountElement) {
+                const count = snapshot.val();
+                clickCountElement.textContent = count !== null ? count : "IDK";
             }
-
-            // Function to open change.org
-            function openChangeOrg() {
-                window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
-            }
-
-            // Assign functions to global scope for button clicks
-            window.openMail = openMail;
-            window.openChangeOrg = openChangeOrg;
         });
     </script>
 
     <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
     <!-- Add a button with onclick function for the second action -->
     <button onclick="openChangeOrg()">Sign the Petition</button>
+
+    <!-- Add a script section to define the onclick function for the second action -->
+    <script>
+        function openChangeOrg() {
+            window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
+        }
+    </script>
 
     <!-- Add a banner at the bottom of the page -->
     <div>
