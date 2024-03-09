@@ -81,7 +81,7 @@
     </style>
 
     <!-- Include the Firebase setup script -->
-    <script type="module" src="./firebase-setup.js"></script>
+    <script src="./firebase-setup.js"></script>
 </head>
 
 <body>
@@ -103,16 +103,14 @@
     <button id="petitionButton">Sign the Petition</button>
 
     <!-- Add a script section to define the onclick functions -->
-    <script type="module">
-        import { openMail, openChangeOrg } from './firebase-setup.js';
-
+    <script>
         function initializeFirebase() {
-    // Increment the counter in the database
-    const counterRef = database.ref('aaacounter/counter'); // Update the path
-    counterRef.transaction((currentCount) => (currentCount || 0) + 1);
-
-    // Listen for changes in the counter value and update the display
-    counterRef.on('value', (snapshot) => {
+        // Increment the counter in the database
+        const counterRef = database.ref('aaacounter/counter');
+        counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+        
+        // Listen for changes in the counter value and update the display
+        counterRef.on('value', (snapshot) => {
         const clickCountElement = document.getElementById('clickCount');
         if (clickCountElement) {
             const count = snapshot.val();
@@ -121,20 +119,20 @@
     });
 }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const mailButton = document.getElementById('mailButton');
-            if (mailButton) {
-                mailButton.addEventListener('click', openMail);
-            }
+document.addEventListener('DOMContentLoaded', function () {
+    const mailButton = document.getElementById('mailButton');
+    if (mailButton) {
+        mailButton.addEventListener('click', openMail);
+    }
 
-            const petitionButton = document.getElementById('petitionButton');
-            if (petitionButton) {
-                petitionButton.addEventListener('click', openChangeOrg);
-            }
+    const petitionButton = document.getElementById('petitionButton');
+    if (petitionButton) {
+        petitionButton.addEventListener('click', openChangeOrg);
+    }
 
-            initializeFirebase();
-        });
-    </script>
+    initializeFirebase();
+ });
+</script> 
 
     <!-- Add a banner at the bottom of the page -->
     <div>
