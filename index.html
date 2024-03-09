@@ -105,34 +105,37 @@
     <!-- Add a script section to define the onclick functions -->
     <script>
         function initializeFirebase() {
-        // Increment the counter in the database
-        const counterRef = database.ref('aaacounter/counter');
-        counterRef.transaction((currentCount) => (currentCount || 0) + 1);
-        
-        // Listen for changes in the counter value and update the display
-        counterRef.on('value', (snapshot) => {
-        const clickCountElement = document.getElementById('clickCount');
-        if (clickCountElement) {
-            const count = snapshot.val();
-            clickCountElement.textContent = count !== null ? count : "IDK";
+            // Increment the counter in the database
+            const counterRef = database.ref('aaacounter/counter');
+            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+
+            // Listen for changes in the counter value and update the display
+            counterRef.on('value', (snapshot) => {
+                const clickCountElement = document.getElementById('clickCount');
+                if (clickCountElement) {
+                    const count = snapshot.val();
+                    clickCountElement.textContent = count !== null ? count : "IDK";
+                }
+            });
         }
-    });
-}
 
-document.addEventListener('DOMContentLoaded', function () {
-    const mailButton = document.getElementById('mailButton');
-    if (mailButton) {
-        mailButton.addEventListener('click', openMail);
-    }
+        document.addEventListener('DOMContentLoaded', function () {
+            const mailButton = document.getElementById('mailButton');
+            if (mailButton) {
+                mailButton.addEventListener('click', openMail);
+            }
 
-    const petitionButton = document.getElementById('petitionButton');
-    if (petitionButton) {
-        petitionButton.addEventListener('click', openChangeOrg);
-    }
+            const petitionButton = document.getElementById('petitionButton');
+            if (petitionButton) {
+                petitionButton.addEventListener('click', function () {
+                    // Replace 'https://www.change.org/your-petition-url' with your actual petition URL
+                    window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
+                });
+            }
 
-    initializeFirebase();
- });
-</script> 
+            initializeFirebase();
+        });
+    </script>
 
     <!-- Add a banner at the bottom of the page -->
     <div>
