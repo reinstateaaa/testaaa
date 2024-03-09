@@ -32,6 +32,11 @@
             margin-top: 20px;
         }
     </style>
+    
+    <script>
+        // Get the click count from localStorage or initialize to 123 if not available
+        var clickCount = parseInt(localStorage.getItem('clickCount')) || 123;
+    </script>
 </head>
 <body>
     <h1>How YOU can help:</h1>
@@ -43,9 +48,6 @@
 
     <!-- Add a script section to define the onclick function for the first action -->
     <script>
-        // Get the click count from localStorage or initialize to 123 if not available
-        var clickCount = parseInt(localStorage.getItem('clickCount')) || 123;
-
         function openMail() {
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
@@ -66,6 +68,9 @@
             // Store the click count in localStorage
             localStorage.setItem('clickCount', clickCount.toString());
         }
+
+        // Initialize the counter on page load
+        updateCounter();
     </script>
 
     <p>Step 2: Sign the change.org petition if you haven't already: (5 clicks) </p>
@@ -75,7 +80,8 @@
     <!-- Add a script section to define the onclick function for the second action -->
     <script>
         function openChangeOrg() {
-            window.location.href = 'https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse';
+            // Open the link in a new tab
+            window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
         }
     </script>
 </body>
