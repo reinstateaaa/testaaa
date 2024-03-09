@@ -13,7 +13,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: url('mail.png') center/cover no-repeat; /* Use a relative path */
+            background: url('mail.png') center/cover no-repeat;
             background-color: black;
             color: white;
         }
@@ -25,8 +25,8 @@
         button {
             background-color: #3498db;
             color: white;
-            padding: 100px 200px;
-            font-size: 160px;
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             margin-top: 20px;
@@ -36,12 +36,12 @@
 <body>
     <h1>How YOU can help:</h1>
     <p>I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure: </p>
-    <p>Step 1: auto-email the board (2 clicks) </p>
+    <p>Step 1: Join the 123 others who have demanded change by auto-emailing the board (2 clicks) </p>
 
-    <!-- Add a button with onclick function -->
-    <button onclick="openMail()">Auto-Email</button>
+    <!-- Add a button with onclick function for the first action -->
+    <button onclick="openMail()">Click me!</button>
 
-    <!-- Add a script section to define the onclick function -->
+    <!-- Add a script section to define the onclick function for the first action -->
     <script>
         function openMail() {
             var email = 'jcsimon@usc.edu';
@@ -51,6 +51,16 @@
                 '?subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
             window.location.href = mailtoURL;
+        }
+    </script>
+    <p>Step 2: Sign the change.org petition if you haven't already: (5 clicks) </p>
+    <!-- Add a button with onclick function for the second action -->
+    <button onclick="openChangeOrg()">Sign the Petition</button>
+
+    <!-- Add a script section to define the onclick function for the second action -->
+    <script>
+        function openChangeOrg() {
+            window.location.href = 'https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse';
         }
     </script>
 </body>
