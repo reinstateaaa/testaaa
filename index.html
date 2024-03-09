@@ -43,7 +43,8 @@
 
     <!-- Add a script section to define the onclick function for the first action -->
     <script>
-        var clickCount = 123; // Initialize the click counter
+        // Get the click count from localStorage or initialize to 123 if not available
+        var clickCount = parseInt(localStorage.getItem('clickCount')) || 123;
 
         function openMail() {
             var email = 'jcsimon@usc.edu';
@@ -62,6 +63,8 @@
         function updateCounter() {
             // Update the counter display
             document.getElementById('clickCount').innerText = clickCount;
+            // Store the click count in localStorage
+            localStorage.setItem('clickCount', clickCount.toString());
         }
     </script>
 
