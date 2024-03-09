@@ -98,9 +98,9 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const database = getDatabase(app);
+        app = initializeApp(firebaseConfig);
+        analytics = getAnalytics(app);
+        database = getDatabase(app);
 
         function openMail() {
             var email = 'jcsimon@usc.edu';
