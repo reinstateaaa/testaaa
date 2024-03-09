@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vercel Website</title>
+</head>
+<body>
+    <h1>Hello, Vercel!</h1>
+    <p>This is my first Vercel website.</p>
+
+    <!-- Add a button with onclick function -->
+    <button onclick="openMail()">Click me!</button>
+
+    <!-- Add a script section to define the onclick function -->
+    <script>
+        function openMail() {
+            // Replace the email, subject, and body with your desired values
+            var email = 'jcsimon@usc.edu';
+            var subject = 'test';
+            var body = 'yoyoyo';
+
+            // Create the mailto URL
+            var mailtoURL = 'mailto:' + email +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+
+            // Open the default mail app with the preloaded email
+            window.location.href = mailtoURL;
+        }
+    </script>
+</body>
+</html>
