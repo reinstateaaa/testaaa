@@ -53,13 +53,24 @@
         }
 
         .action-section {
-            font-size: 20px; /* Adjust the font size as needed */
-            margin-top: 10px; /* Add some space between sections */
+            font-size: 20px;
+            margin-top: 10px;
         }
 
         @keyframes marquee {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
+        }
+
+        /* Media queries for responsiveness */
+        @media only screen and (max-width: 600px) {
+            .rotating-banner {
+                font-size: 24px;
+            }
+
+            .action-section {
+                font-size: 16px;
+            }
         }
     </style>
 
