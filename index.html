@@ -36,13 +36,15 @@
 <body>
     <h1>How YOU can help:</h1>
     <p>I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure: </p>
-    <p>Step 1: Join the 123 others who have demanded change by auto-emailing the board (2 clicks) </p>
+    <p>Step 1: Join the <span id="clickCount">123</span> others who have demanded change by auto-emailing the board (2 clicks) </p>
 
     <!-- Add a button with onclick function for the first action -->
     <button onclick="openMail()">Click me!</button>
 
     <!-- Add a script section to define the onclick function for the first action -->
     <script>
+        var clickCount = 123; // Initialize the click counter
+
         function openMail() {
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
@@ -51,8 +53,18 @@
                 '?subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
             window.location.href = mailtoURL;
+
+            // Increment the click counter and update the display
+            clickCount++;
+            updateCounter();
+        }
+
+        function updateCounter() {
+            // Update the counter display
+            document.getElementById('clickCount').innerText = clickCount;
         }
     </script>
+
     <p>Step 2: Sign the change.org petition if you haven't already: (5 clicks) </p>
     <!-- Add a button with onclick function for the second action -->
     <button onclick="openChangeOrg()">Sign the Petition</button>
