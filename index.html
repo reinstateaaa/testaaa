@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@
             color: white;
         }
 
-        h1, p {
+        h1,
+        p {
             text-align: center;
         }
 
@@ -32,46 +34,54 @@
             margin-top: 20px;
         }
     </style>
-    
-    <script>
-        // Get the click count from localStorage or initialize to 123 if not available
-        var clickCount = parseInt(localStorage.getItem('clickCount')) || 123;
-    </script>
-</head>
-<body>
-    <h1>How YOU can help:</h1>
-    <p>I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure: </p>
-    <p>Step 1: Join the <span id="clickCount">123</span> others who have demanded change by auto-emailing the board (2 clicks) </p>
 
-    <!-- Add a button with onclick function for the first action -->
-    <button onclick="openMail()">Click me!</button>
-
-    <!-- Add a script section to define the onclick function for the first action -->
     <script>
-        function openMail() {
+        async function openMail() {
             var email = 'jcsimon@usc.edu';
+            var cc = 'rj99420@usc.edu,amelsnes@usc.edu';
             var subject = 'test';
             var body = 'yoyoyo';
+
+            // Make a POST request to the serverless function to increment the counter
+            await fetch('/api/increment', { method: 'POST' });
+
+            // Create the mailto URL
             var mailtoURL = 'mailto:' + email +
-                '?subject=' + encodeURIComponent(subject) +
+                '?cc=' + cc +
+                '&subject=' + encodeURIComponent(subject) +
                 '&body=' + encodeURIComponent(body);
+
+            // Open the default mail app with the preloaded email
             window.location.href = mailtoURL;
 
-            // Increment the click counter and update the display
-            clickCount++;
+            // Update the counter display
             updateCounter();
         }
 
-        function updateCounter() {
+        async function updateCounter() {
+            // Fetch the current click count from the serverless function
+            const response = await fetch('/api/increment');
+            const data = await response.json();
+            clickCount = data.clickCount;
+
             // Update the counter display
             document.getElementById('clickCount').innerText = clickCount;
-            // Store the click count in localStorage
-            localStorage.setItem('clickCount', clickCount.toString());
         }
 
         // Initialize the counter on page load
         updateCounter();
     </script>
+</head>
+
+<body>
+    <h1>How YOU can help:</h1>
+    <p>I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:
+    </p>
+    <p>Step 1: Join the <span id="clickCount">123</span> others who have demanded change by auto-emailing the board (2
+            clicks) </p>
+
+    <!-- Add a button with onclick function for the first action -->
+    <button onclick="openMail()">Click me!</button>
 
     <p>Step 2: Sign the change.org petition if you haven't already: (5 clicks) </p>
     <!-- Add a button with onclick function for the second action -->
@@ -79,10 +89,11 @@
 
     <!-- Add a script section to define the onclick function for the second action -->
     <script>
-        function openChangeOrg() {
+        async function openChangeOrg() {
             // Open the link in a new tab
             window.open('https://www.change.org/p/demand-for-usc-to-reinstate-academic-achievement-award-aaa-funding-for-current-students?source_location=petitions_browse', '_blank');
         }
     </script>
 </body>
+
 </html>
