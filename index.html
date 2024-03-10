@@ -82,9 +82,9 @@
 
     <!-- Firebase initialization script -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyAMh3rbnYEZkMpg-6iOVSdp6yQPH50dspg",
@@ -107,9 +107,7 @@
             var email = 'jcsimon@usc.edu';
             var subject = 'test';
             var body = 'yoyoyo';
-            var mailtoURL = 'mailto:' + email +
-                '?subject=' + encodeURIComponent(subject) +
-                '&body=' + encodeURIComponent(body);
+            var mailtoURL = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
             window.location.href = mailtoURL;
 
             // Increment the counter in the database
@@ -117,21 +115,19 @@
         }
 
         // Listen for changes in the counter value and update the display
-        const counterRef = database.ref('aaacounter/counter');
-        counterRef.on('value', (snapshot) => {
-            const clickCountElement = document.getElementById('clickCount');
-            if (clickCountElement) {
-                clickCountElement.textContent = snapshot.val() || "IDK";
-            }
-        });
+        onValue(counterRef, (snapshot) => {
+        const clickCountElement = document.getElementById('clickCount');
+        if (clickCountElement) {
+            clickCountElement.textContent = snapshot.val() || "IDK";
+        }
+    });
 
         function initializeFirebase() {
             // Increment the counter in the database
-            const counterRef = database.ref('aaacounter/counter');
             counterRef.transaction((currentCount) => (currentCount || 0) + 1);
 
             // Listen for changes in the counter value and update the display
-            counterRef.on('value', (snapshot) => {
+            onValue(counterRef, (snapshot) => {
                 const clickCountElement = document.getElementById('clickCount');
                 if (clickCountElement) {
                     const count = snapshot.val();
