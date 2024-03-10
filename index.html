@@ -120,7 +120,7 @@
         onValue(counterRef, (snapshot) => {
         const clickCountElement = document.getElementById('clickCount');
         if (clickCountElement) {
-            clickCountElement.textContent = snapshot.val() || "IDK";
+            clickCountElement.textContent = snapshot.val() || "";
         }
     });
 
@@ -172,7 +172,7 @@
     <button id="mailButton" onclick="openMail()">Demand Responsibility</button>
 
     <!-- Display the counter -->
-    <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
+    <!-- <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p> -->
 
     <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
     <!-- Add a button with onclick function for the second action -->
