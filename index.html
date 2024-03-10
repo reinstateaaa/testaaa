@@ -84,8 +84,8 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-        
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+            
         const firebaseConfig = {
             apiKey: "AIzaSyAMh3rbnYEZkMpg-6iOVSdp6yQPH50dspg",
             authDomain: "aaacounter.firebaseapp.com",
@@ -111,7 +111,7 @@
             window.location.href = mailtoURL;
 
             // Increment the counter in the database
-            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+            set(counterRef, (currentCount) => (currentCount || 0) + 1);
         }
 
         // Listen for changes in the counter value and update the display
@@ -124,7 +124,7 @@
 
         function initializeFirebase() {
             // Increment the counter in the database
-            counterRef.transaction((currentCount) => (currentCount || 0) + 1);
+            set(counterRef, (currentCount) => (currentCount || 0) + 1);
 
             // Listen for changes in the counter value and update the display
             onValue(counterRef, (snapshot) => {
