@@ -101,6 +101,7 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
+        const counterRef = ref(database, 'aaacounter/counter');
 
         function openMail() {
             var email = 'jcsimon@usc.edu';
@@ -112,7 +113,6 @@
             window.location.href = mailtoURL;
 
             // Increment the counter in the database
-            const counterRef = database.ref('aaacounter/counter');
             counterRef.transaction((currentCount) => (currentCount || 0) + 1);
         }
 
@@ -166,7 +166,7 @@
     <p class="action-section">Step 1: Join the <span id="clickCount">IDK</span> others who have demanded change by auto-emailing the board (2 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
-     <button id="mailButton">Demand Responsibility</button>
+    <button id="mailButton" onclick="openMail()">Demand Responsibility</button>
 
     <!-- Display the counter -->
     <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p>
