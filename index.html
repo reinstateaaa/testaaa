@@ -122,19 +122,24 @@
         }
     });
 
-        function initializeFirebase() {
-            // Increment the counter in the database
-            set(counterRef, (currentCount) => (currentCount || 0) + 1);
-
-            // Listen for changes in the counter value and update the display
-            onValue(counterRef, (snapshot) => {
-                const clickCountElement = document.getElementById('clickCount');
-                if (clickCountElement) {
-                    const count = snapshot.val();
-                    clickCountElement.textContent = count !== null ? count : "IDK";
-                }
-            });
-        }
+    function initializeFirebase() {
+        // Increment the counter in the database
+        const counterRef = database.ref('aaacounter/counter');
+        set(counterRef, (currentCount) => (currentCount || 0) + 1)
+            .then(() => {
+                // Listen for changes in the counter value and update the display
+                counterRef.on('value', (snapshot) => {
+                    const clickCountElement = document.getElementById('clickCount');
+                    if (clickCountElement) {
+                        const count = snapshot.val();
+                        clickCountElement.textContent = count !== null ? count : "IDK";
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error('Error updating counter:', error);
+        });
+}
 
         document.addEventListener('DOMContentLoaded', function () {
             const mailButton = document.getElementById('mailButton');
