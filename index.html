@@ -127,6 +127,11 @@
     function initializeFirebase() {
         // Increment the counter in the database
         const counterRef = ref(getDatabase(), 'aaacounter/counter');
+
+        // Get the current count before incrementing
+        get(counterRef).then((snapshot) => {
+            const currentCount = snapshot.val();
+        
         set(counterRef, (currentCount || 0) + 1)
             .then(() => {
                 // Listen for changes in the counter value and update the display
@@ -140,7 +145,8 @@
             })
             .catch((error) => {
                 console.error('Error updating counter:', error);
-        });
+            });
+    });
 }
 
         document.addEventListener('DOMContentLoaded', function () {
