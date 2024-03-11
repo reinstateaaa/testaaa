@@ -120,7 +120,7 @@
             window.location.href = mailtoURL;
             // Increment the counter in the database
             set(counterRef, (currentCount || 0) + 1);
-        }
+        });
 
         // Listen for changes in the counter value and update the display
         onValue(counterRef, (snapshot) => {
@@ -129,6 +129,7 @@
             clickCountElement.textContent = snapshot.val() || "IDK";
         }
     });
+}
 
     function initializeFirebase() {
     // Get the current count from the Firebase Realtime Database
