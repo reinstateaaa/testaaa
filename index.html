@@ -129,7 +129,7 @@
     const counterRef = ref(getDatabase(), 'aaacounter/counter');
 
     // Get the current count before incrementing
-    get(counterRef)
+    getDatabase(counterRef)
         .then((snapshot) => {
             const currentCount = snapshot.val() || 0;
 
