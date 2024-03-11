@@ -136,7 +136,8 @@
                 if (clickCountElement) {
                     const count = snapshot.val();
                     clickCountElement.textContent = count !== null ? count : "IDK";
-                });
+                }
+            });
         })
         .catch((error) => {
             console.error('Error updating counter:', error);
