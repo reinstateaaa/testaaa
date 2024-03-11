@@ -126,7 +126,7 @@
 
     function initializeFirebase() {
         // Increment the counter in the database
-        const counterRef = database.ref('aaacounter/counter');
+        const counterRef = ref(getDatabase(), 'aaacounter/counter');
         set(counterRef, (currentCount) => (currentCount || 0) + 1)
             .then(() => {
                 // Listen for changes in the counter value and update the display
