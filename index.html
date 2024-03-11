@@ -113,7 +113,7 @@
             var mailtoURL = 'mailto:' + email + '?cc=' + cc + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
             window.location.href = mailtoURL;
             // Increment the counter in the database
-            set(counterRef, (currentCount) => (currentCount || 0) + 1);
+            set(counterRef, (currentCount || 0) + 1);
         }
 
         // Listen for changes in the counter value and update the display
