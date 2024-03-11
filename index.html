@@ -107,6 +107,11 @@
         const counterRef = ref(database, 'aaacounter/counter');
 
         function openMail() {
+            // Get the current count from the Firebase Realtime Database
+            get(counterRef)
+                .then((snapshot) => {
+                    const currentCount = snapshot.val();
+                    
             var email = 'botchair@usc.edu';
             var cc = 'ebrink@usc.edu, cej097@usc.edu, msallard@usc.edu, rbeyer@usc.edu, rjcaruso@usc.edu, president@usc.edu, pres@usc.edu, kklein@usc.edu, kleventhal@usc.edu, uadvheal@usc.edu, dd_822@usc.edu, renepak@usc.edu, andrewgu@usc.edu, mtodd@usc.edu, aburchet@usc.edu, gailford@usc.edu, keridegr@usc.edu, carinaja@usc.edu, noemigar@usc.edu, mariodia@usc.edu, rileycoo@usc.edu, lancewri@usc.edu, rfrausto@usc.edu, sklaveni@usc.edu, anchundi@usc.edu';
             var subject = 'Reinstate the Academic Achievement Award';
@@ -126,6 +131,11 @@
     });
 
     function initializeFirebase() {
+    // Get the current count from the Firebase Realtime Database
+    get(counterRef)
+        .then((snapshot) => {
+            const currentCount = snapshot.val();
+            
     // Increment the counter in the database
     const counterRef = ref(database, 'aaacounter/counter');
     set(counterRef, (currentCount || 0) + 1)
