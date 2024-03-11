@@ -125,28 +125,33 @@
     });
 
     function initializeFirebase() {
-        // Increment the counter in the database
-        const counterRef = ref(getDatabase(), 'aaacounter/counter');
+    // Increment the counter in the database
+    const counterRef = ref(getDatabase(), 'aaacounter/counter');
 
-        // Get the current count before incrementing
-        get(counterRef).then((snapshot) => {
-            const currentCount = snapshot.val();
-        
-        set(counterRef, (currentCount || 0) + 1)
-            .then(() => {
-                // Listen for changes in the counter value and update the display
-                counterRef.on('value', (snapshot) => {
-                    const clickCountElement = document.getElementById('clickCount');
-                    if (clickCountElement) {
-                        const count = snapshot.val();
-                        clickCountElement.textContent = count !== null ? count : "IDK";
-                    }
+    // Get the current count before incrementing
+    get(counterRef)
+        .then((snapshot) => {
+            const currentCount = snapshot.val() || 0;
+
+            // Increment the counter
+            set(counterRef, currentCount + 1)
+                .then(() => {
+                    // Listen for changes in the counter value and update the display
+                    onValue(counterRef, (snapshot) => {
+                        const clickCountElement = document.getElementById('clickCount');
+                        if (clickCountElement) {
+                            const count = snapshot.val();
+                            clickCountElement.textContent = count !== null ? count : "IDK";
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error updating counter:', error);
                 });
-            })
-            .catch((error) => {
-                console.error('Error updating counter:', error);
-            });
-    });
+        })
+        .catch((error) => {
+            console.error('Error getting current count:', error);
+        });
 }
 
         document.addEventListener('DOMContentLoaded', function () {
