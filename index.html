@@ -103,7 +103,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-        const database = getDatabase(app);
+        const database = getDatabase();
         const counterRef = ref(database, 'aaacounter/counter');
 
         function openMail() {
@@ -127,31 +127,19 @@
 
     function initializeFirebase() {
     // Increment the counter in the database
-    const counterRef = ref(getDatabase(), 'aaacounter/counter');
-
-    // Get the current count before incrementing
-    getDatabase(counterRef)
-        .then((snapshot) => {
-            const currentCount = snapshot.val() || 0;
-
-            // Increment the counter
-            set(counterRef, currentCount + 1)
-                .then(() => {
-                    // Listen for changes in the counter value and update the display
-                    onValue(counterRef, (snapshot) => {
-                        const clickCountElement = document.getElementById('clickCount');
-                        if (clickCountElement) {
-                            const count = snapshot.val();
-                            clickCountElement.textContent = count !== null ? count : "IDK";
-                        }
-                    });
-                })
-                .catch((error) => {
-                    console.error('Error updating counter:', error);
+    const counterRef = ref(database, 'aaacounter/counter');
+    set(counterRef, (currentCount || 0) + 1)
+        .then(() => {
+            // Listen for changes in the counter value and update the display
+            onValue(counterRef, (snapshot) => {
+                const clickCountElement = document.getElementById('clickCount');
+                if (clickCountElement) {
+                    const count = snapshot.val();
+                    clickCountElement.textContent = count !== null ? count : "IDK";
                 });
         })
         .catch((error) => {
-            console.error('Error getting current count:', error);
+            console.error('Error updating counter:', error);
         });
 }
 
