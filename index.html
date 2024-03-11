@@ -121,6 +121,7 @@
             // Increment the counter in the database
             set(counterRef, (currentCount || 0) + 1);
         });
+    }
 
         // Listen for changes in the counter value and update the display
         onValue(counterRef, (snapshot) => {
