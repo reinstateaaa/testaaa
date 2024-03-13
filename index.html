@@ -82,13 +82,9 @@
             }
         }
 
-        h1,
-        h2,
-        p.action-section,
-        .rotating-banner span,
-        span.step-text {
-            color: rgb(255, 207, 0); /* Yellow color */
-        }
+       .yellow-text {
+           color: rgb(255, 207, 0);
+       }
     </style>
 
     <!-- Firebase initialization script -->
@@ -185,9 +181,9 @@
         <span>REINSTATE AAA @ USC!</span>
     </div>
 
-    <h1>How YOU can help:</h1>
+    <h1 class="yellow-text">How YOU can help:</h1>
     <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
-    <p class="action-section"><span class="step-text">Step 1:</span> Join the <span id="clickCount">23</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
+    <p class="action-section">Step 1: Join the <span id="clickCount">23</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
     <button id="mailButton" onclick="openMail()">Demand Responsibility</button>
@@ -195,7 +191,7 @@
     <!-- Display the counter -->
     <!-- <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p> -->
 
-    <p class="action-section"><span class="step-text">Step 2:</span> Sign the change.org petition if you haven't already: (5 clicks)</p>
+    <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
     <!-- Add a button with onclick function for the second action -->
     <button onclick="openChangeOrg()">Sign the Petition</button>
 
@@ -208,7 +204,7 @@
 
     <!-- Add a banner at the bottom of the page -->
     <div>
-        <h2>Why We Are Angry:</h2>
+        <h2 class="yellow-text">Why We Are Angry:</h2>
         <p>The Academic Achievement Award (AAA) first began in 2010 as a means to “make it easier for students with excellent academic records to graduate with multiple programs of study and still graduate in four years…without an extra cost” (Gene Bickers, former vice provost for undergraduate education). For more than a decade, AAA has granted high-performing students the ability to pursue all aspirations no matter their financial limitations, confirming and fortifying USC’s principle of an unlimited, interdisciplinary education. That is, until now. On March 8, the Office of Academic Programs suddenly removed the award, forcing students to pay $2,137 per added unit. Students who expected to take part in the program are now left reeling and grappling for solutions. By removing AAA, USC is disenfranchising its most ambitious and deserving students. It is taking advantage of low-income students by restricting their education for unnecessary, exorbitant profit, pulling the rug from under those who expected AAA to be available to them when committing to USC. Join us now in reversing the removal of AAA by signing our petition and contacting those in charge.</p>
     </div>
 </body>
