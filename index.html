@@ -85,6 +85,11 @@
        .yellow-text {
            color: rgb(255, 207, 0);
        }
+
+       .step-text {
+            color: rgb(255, 207, 0); /* Yellow color */
+        }
+
     </style>
 
     <!-- Firebase initialization script -->
@@ -183,7 +188,7 @@
 
     <h1 class="yellow-text">How YOU can help:</h1>
     <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
-    <p class="action-section">Step 1: Join the <span id="clickCount">23</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
+    <p class="action-section"><span class="step-text">Step 1:</span> Join the <span id="clickCount">23</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
     <button id="mailButton" onclick="openMail()">Demand Responsibility</button>
@@ -191,7 +196,7 @@
     <!-- Display the counter -->
     <!-- <p id="counter">Total Clicks: <span id="clickCount">IDK</span></p> -->
 
-    <p class="action-section">Step 2: Sign the change.org petition if you haven't already: (5 clicks)</p>
+    <p class="action-section"><span class="step-text">Step 2:</span> Sign the change.org petition if you haven't already: (5 clicks)</p>
     <!-- Add a button with onclick function for the second action -->
     <button onclick="openChangeOrg()">Sign the Petition</button>
 
