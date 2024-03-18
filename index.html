@@ -131,7 +131,7 @@
         onValue(counterRef, (snapshot) => {
         const clickCountElement = document.getElementById('clickCount');
         if (clickCountElement) {
-            clickCountElement.textContent = snapshot.val() || "34";
+            clickCountElement.textContent = snapshot.val() || "35";
         }
     });
 
@@ -152,7 +152,7 @@
                         const clickCountElement = document.getElementById('clickCount');
                         if (clickCountElement) {
                             const count = snapshot.val();
-                            clickCountElement.textContent = count !== null ? count : "34";
+                            clickCountElement.textContent = count !== null ? count : "35";
                         }
                     });
                 })
@@ -188,7 +188,7 @@
 
     <h1 class="yellow-text">How YOU can help:</h1>
     <p class="action-section">I know this site looks sketch, I made it in a few hours. Below are quick actions you can take to add pressure:</p>
-    <p class="action-section"><span class="step-text">Step 1:</span> Join the <span id="clickCount">34</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
+    <p class="action-section"><span class="step-text">Step 1:</span> Join the <span id="clickCount">35</span> others who have demanded change by auto-emailing the board (3 clicks)</p>
 
     <!-- Add a button with onclick function for the first action -->
     <button id="mailButton" onclick="openMail()">Demand Responsibility</button>
